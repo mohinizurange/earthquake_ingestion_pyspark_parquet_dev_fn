@@ -1,0 +1,698 @@
+|-- bbox: array (nullable = true)
+ |    |-- element: double (containsNull = true)
+ |-- features: array (nullable = true)
+ |    |-- element: struct (containsNull = true)
+ |    |    |-- geometry: struct (nullable = true)
+ |    |    |    |-- coordinates: array (nullable = true)
+ |    |    |    |    |-- element: double (containsNull = true)
+ |    |    |    |-- type: string (nullable = true)
+ |    |    |-- id: string (nullable = true)
+ |    |    |-- properties: struct (nullable = true)
+ |    |    |    |-- alert: string (nullable = true)
+ |    |    |    |-- cdi: double (nullable = true)
+ |    |    |    |-- code: string (nullable = true)
+ |    |    |    |-- detail: string (nullable = true)
+ |    |    |    |-- dmin: double (nullable = true)
+ |    |    |    |-- felt: long (nullable = true)
+ |    |    |    |-- gap: double (nullable = true)
+ |    |    |    |-- ids: string (nullable = true)
+ |    |    |    |-- mag: double (nullable = true)
+ |    |    |    |-- magType: string (nullable = true)
+ |    |    |    |-- mmi: double (nullable = true)
+ |    |    |    |-- net: string (nullable = true)
+ |    |    |    |-- nst: long (nullable = true)
+ |    |    |    |-- place: string (nullable = true)
+ |    |    |    |-- rms: double (nullable = true)
+ |    |    |    |-- sig: long (nullable = true)
+ |    |    |    |-- sources: string (nullable = true)
+ |    |    |    |-- status: string (nullable = true)
+ |    |    |    |-- time: long (nullable = true)
+ |    |    |    |-- title: string (nullable = true)
+ |    |    |    |-- tsunami: long (nullable = true)
+ |    |    |    |-- type: string (nullable = true)
+ |    |    |    |-- types: string (nullable = true)
+ |    |    |    |-- tz: string (nullable = true)
+ |    |    |    |-- updated: long (nullable = true)
+ |    |    |    |-- url: string (nullable = true)
+ |    |    |-- type: string (nullable = true)
+ |-- metadata: struct (nullable = true)
+ |    |-- api: string (nullable = true)
+ |    |-- count: long (nullable = true)
+ |    |-- generated: long (nullable = true)
+ |    |-- status: long (nullable = true)
+ |    |-- title: string (nullable = true)
+ |    |-- url: string (nullable = true)
+ |-- type: string (nullable = true)
+
+## after read data from landing loc
+ +--------------------+--------------------+--------------------+-----------------+
+|                bbox|            
+|            metadata|             type|
++--------------------+--------------------+--------------------+-----------------+
+|[-179.9459, -60.7...|[{{[-150.8969, 61...|{1.14.1, 8428, 17...|FeatureCollection|
++--------------------+--------------------+--------------------+-----------------+
+
+root
+ |-- bbox: array (nullable = true)
+ |    |-- element: double (containsNull = true)
+ |-- features: array (nullable = true)
+ |    |-- element: struct (containsNull = true)
+ |    |    |-- geometry: struct (nullable = true)
+ |    |    |    |-- coordinates: array (nullable = true)
+ |    |    |    |    |-- element: double (containsNull = true)
+ |    |    |    |-- type: string (nullable = true)
+ |    |    |-- id: string (nullable = true)
+ |    |    |-- properties: struct (nullable = true)
+ |    |    |    |-- alert: string (nullable = true)
+ |    |    |    |-- cdi: double (nullable = true)
+ |    |    |    |-- code: string (nullable = true)
+ |    |    |    |-- detail: string (nullable = true)
+ |    |    |    |-- dmin: double (nullable = true)
+ |    |    |    |-- felt: long (nullable = true)
+ |    |    |    |-- gap: double (nullable = true)
+ |    |    |    |-- ids: string (nullable = true)
+ |    |    |    |-- mag: double (nullable = true)
+ |    |    |    |-- magType: string (nullable = true)
+ |    |    |    |-- mmi: double (nullable = true)
+ |    |    |    |-- net: string (nullable = true)
+ |    |    |    |-- nst: long (nullable = true)
+ |    |    |    |-- place: string (nullable = true)
+ |    |    |    |-- rms: double (nullable = true)
+ |    |    |    |-- sig: long (nullable = true)
+ |    |    |    |-- sources: string (nullable = true)
+ |    |    |    |-- status: string (nullable = true)
+ |    |    |    |-- time: long (nullable = true)
+ |    |    |    |-- title: string (nullable = true)
+ |    |    |    |-- tsunami: long (nullable = true)
+ |    |    |    |-- type: string (nullable = true)
+ |    |    |    |-- types: string (nullable = true)
+ |    |    |    |-- tz: string (nullable = true)
+ |    |    |    |-- updated: long (nullable = true)
+ |    |    |    |-- url: string (nullable = true)
+ |    |    |-- type: string (nullable = true)
+ |-- metadata: struct (nullable = true)
+ |    |-- api: string (nullable = true)
+ |    |-- count: long (nullable = true)
+ |    |-- generated: long (nullable = true)
+ |    |-- status: long (nullable = true)
+ |    |-- title: string (nullable = true)
+ |    |-- url: string (nullable = true)
+ |-- type: string (nullable = true)
+ 
+ 
+ ### flatten 
+ ## flatten feature by using expload
+ +--------------------+
+|             feature|
++--------------------+
+|{{[-150.8969, 61....|
+|{{[-156.156, 67.3...|
+|{{[-151.3031, 61....|
+|{{[-153.4501, 59....|
+|{{[-98.03295898, ...|
+|{{[-152.243, 60.8...|
+|{{[-148.6829, 65....|
+|{{[-117.0904, 36....|
+|{{[121.6705, 23.9...|
+|{{[-148.7237, 62....|
+|{{[-117.1326, 36....|
+|{{[-117.1301, 36....|
+|{{[-122.807662963...|
+|{{[-67.6152, -23....|
+|{{[-97.8219986, 3...|
+|{{[-155.364334106...|
+|{{[-122.780830383...|
+|{{[-155.361999511...|
+|{{[-122.808998107...|
+|{{[-155.359329223...|
++--------------------+
+only showing top 20 rows
+
+root
+ |-- feature: struct (nullable = true)
+ |    |-- geometry: struct (nullable = true)
+ |    |    |-- coordinates: array (nullable = true)
+ |    |    |    |-- element: double (containsNull = true)
+ |    |    |-- type: string (nullable = true)
+ |    |-- id: string (nullable = true)
+ |    |-- properties: struct (nullable = true)
+ |    |    |-- alert: string (nullable = true)
+ |    |    |-- cdi: double (nullable = true)
+ |    |    |-- code: string (nullable = true)
+ |    |    |-- detail: string (nullable = true)
+ |    |    |-- dmin: double (nullable = true)
+ |    |    |-- felt: long (nullable = true)
+ |    |    |-- gap: double (nullable = true)
+ |    |    |-- ids: string (nullable = true)
+ |    |    |-- mag: double (nullable = true)
+ |    |    |-- magType: string (nullable = true)
+ |    |    |-- mmi: double (nullable = true)
+ |    |    |-- net: string (nullable = true)
+ |    |    |-- nst: long (nullable = true)
+ |    |    |-- place: string (nullable = true)
+ |    |    |-- rms: double (nullable = true)
+ |    |    |-- sig: long (nullable = true)
+ |    |    |-- sources: string (nullable = true)
+ |    |    |-- status: string (nullable = true)
+ |    |    |-- time: long (nullable = true)
+ |    |    |-- title: string (nullable = true)
+ |    |    |-- tsunami: long (nullable = true)
+ |    |    |-- type: string (nullable = true)
+ |    |    |-- types: string (nullable = true)
+ |    |    |-- tz: string (nullable = true)
+ |    |    |-- updated: long (nullable = true)
+ |    |    |-- url: string (nullable = true)
+ |    |-- type: string (nullable = true)
+
+
+
+    ## Extract properties and coordinates from flattened_feature_df
++-----+----+----------+--------------------+--------------+----+------------------+--------------+---------+-------+----+---+----+--------------------+------------+---+-------+---------+-------------+--------------------+-------+----------+--------------------+----+-------------+--------------------+--------------------+
+|alert| cdi|      code|              detail|          dmin|felt|               gap|           ids|      mag|magType| mmi|net| nst|               place|         rms|sig|sources|   status|         time|               title|tsunami|      type|               types|  tz|      updated|                 url|         coordinates|
++-----+----+----------+--------------------+--------------+----+------------------+--------------+---------+-------+----+---+----+--------------------+------------+---+-------+---------+-------------+--------------------+-------+----------+--------------------+----+-------------+--------------------+--------------------+
+| null|null|024dtzecs0|https://earthquak...|          null|null|              null|,ak024dtzecs0,|      1.6|     ml|null| ak|null|21 km WSW of Susi...|        0.62| 39|   ,ak,|automatic|1730027697762|M 1.6 - 21 km WSW...|      0|earthquake| ,origin,phase-data,|null|1730027817500|https://earthquak...|[-150.8969, 61.48...|
+| null|null|024dtz1fvh|https://earthquak...|          null|null|              null|,ak024dtz1fvh,|      2.1|     ml|null| ak|null|57 km NNE of Kobu...|        0.59| 68|   ,ak,|automatic|1730026472611|M 2.1 - 57 km NNE...|      0|earthquake| ,origin,phase-data,|null|1730027152415|https://earthquak...|[-156.156, 67.339...|
+| null|null|024dtyx5f5|https://earthquak...|          null|null|              null|,ak024dtyx5f5,|      1.7|     ml|null| ak|null|32 km NNW of Belu...|        0.86| 44|   ,ak,|automatic|1730025270892|M 1.7 - 32 km NNW...|      0|earthquake| ,origin,phase-data,|null|1730025428058|https://earthquak...|[-151.3031, 61.40...|
+| null|null|024dtyw8ma|https://earthquak...|          null|null|              null|,ak024dtyw8ma,|      1.8|     ml|null| ak|null|39 km ENE of Pedr...|        0.25| 50|   ,ak,|automatic|1730025005789|M 1.8 - 39 km ENE...|      0|earthquake| ,origin,phase-data,|null|1730025113511|https://earthquak...|[-153.4501, 59.91...|
+| null|null|  2024vcxq|https://earthquak...|0.009010146372|null|       48.52166748|  ,ok2024vcxq,|     2.29|     ml|null| ok|  47|9 km WNW of Union...|0.9172689693| 81|   ,ok,|automatic|1730024907497|M 2.3 - 9 km WNW ...|      0|earthquake| ,origin,phase-data,|null|1730025515584|https://earthquak...|[-98.03295898, 35...|
+| null|null|024dtyvgeh|https://earthquak...|          null|null|              null|,ak024dtyvgeh,|      1.1|     ml|null| ak|null|56 km WNW of Niki...|        1.22| 19|   ,ak,|automatic|1730024785316|M 1.1 - 56 km WNW...|      0|earthquake| ,origin,phase-data,|null|1730025156519|https://earthquak...|[-152.243, 60.891...|
+| null|null|024dtyuth6|https://earthquak...|          null|null|              null|,ak024dtyuth6,|      1.3|     ml|null| ak|null|34 km ESE of Mint...|        0.73| 26|   ,ak,|automatic|1730024623163|M 1.3 - 34 km ESE...|      0|earthquake| ,origin,phase-data,|null|1730024769645|https://earthquak...|[-148.6829, 65.02...|
+| null|null|  00886893|https://earthquak...|         0.325|null|            263.37|  ,nn00886893,|      1.0|     ml|null| nn|  21|28 km NW of Furna...|      0.1546| 15|   ,nn,|automatic|1730024542814|M 1.0 - 28 km NW ...|      0|earthquake| ,origin,phase-data,|null|1730024669108|https://earthquak...|[-117.0904, 36.61...|
+| null| 3.8|  7000nngq|https://earthquak...|          0.21|  22|              69.0|  ,us7000nngq,|      5.1|     mb|null| us|  60|6 km E of Hualien...|         1.2|409|   ,us,| reviewed|1730024505232|M 5.1 - 6 km E of...|      0|earthquake|,dyfi,origin,phas...|null|1730028144223|https://earthquak...|[121.6705, 23.974...|
+| null|null|024dtyt4ec|https://earthquak...|          null|null|              null|,ak024dtyt4ec,|      1.9|     ml|null| ak|null|48 km SSE of Cant...|        0.69| 56|   ,ak,|automatic|1730024151408|M 1.9 - 48 km SSE...|      0|earthquake| ,origin,phase-data,|null|1730024247443|https://earthquak...|[-148.7237, 62.96...|
+| null|null|  00886892|https://earthquak...|         0.393|null|270.08000000000004|  ,nn00886892,|      1.1|     ml|null| nn|  10|29 km WNW of Furn...|      0.2614| 19|   ,nn,|automatic|1730023709471|M 1.1 - 29 km WNW...|      0|earthquake| ,origin,phase-data,|null|1730023846874|https://earthquak...|[-117.1326, 36.59...|
+| null|null|  00886890|https://earthquak...|         0.353|null|            271.39|  ,nn00886890,|      1.2|     ml|null| nn|  20|28 km WNW of Furn...|      0.2035| 22|   ,nn,|automatic|1730023149085|M 1.2 - 28 km WNW...|      0|earthquake| ,origin,phase-data,|null|1730023288765|https://earthquak...|[-117.1301, 36.56...|
+| null|null|  75079586|https://earthquak...|       0.01799|null|              95.0|  ,nc75079586,|     0.27|     md|null| nc|   6|7 km NNW of The G...|        0.01|  1|   ,nc,|automatic|1730022784950|M 0.3 - 7 km NNW ...|      0|earthquake|,nearby-cities,or...|null|1730024239358|https://earthquak...|[-122.80766296386...|
+| null|null|  7000nngm|https://earthquak...|         0.744|null|              67.0|  ,us7000nngm,|      4.9|    mww|null| us|  53|87 km SE of San P...|        1.43|369|   ,us,| reviewed|1730022612706|M 4.9 - 87 km SE ...|      0|earthquake| ,origin,phase-data,|null|1730024841040|https://earthquak...|[-67.6152, -23.48...|
+| null|null|  2024vcwh|https://earthquak...| 0.06292840093|null|       58.01319885|  ,ok2024vcwh,|      1.8|     ml|null| ok|  37|10 km NNW of Alex...|0.5761931562| 50|   ,ok,|automatic|1730022397293|M 1.8 - 10 km NNW...|      0|earthquake| ,origin,phase-data,|null|1730023028742|https://earthquak...|[-97.8219986, 34....|
+| null|null|  74514997|https://earthquak...|       0.04215|null|             161.0|  ,hv74514997,|2.1400001|     md|null| hv|  51|12 km E of Pāhala...| 0.119999997| 70|   ,hv,|automatic|1730022144780|M 2.1 - 12 km E o...|      0|earthquake| ,origin,phase-data,|null|1730022309270|https://earthquak...|[-155.36433410644...|
+| null|null|  75079581|https://earthquak...|      0.005541|null|              78.0|  ,nc75079581,|     0.79|     md|null| nc|  20|3 km NW of The Ge...|        0.02| 10|   ,nc,|automatic|1730021166430|M 0.8 - 3 km NW o...|      0|earthquake|,nearby-cities,or...|null|1730022736186|https://earthquak...|[-122.78083038330...|
+| null|null|  74514972|https://earthquak...|       0.04568|null|             182.0|  ,hv74514972,|      2.0|     md|null| hv|  45|12 km E of Pāhala...| 0.119999997| 62|   ,hv,|automatic|1730020706800|M 2.0 - 12 km E o...|      0|earthquake| ,origin,phase-data,|null|1730020815040|https://earthquak...|[-155.36199951171...|
+| null|null|  75079576|https://earthquak...|       0.01508|null|              54.0|  ,nc75079576,|     0.71|     md|null| nc|  15|8 km WNW of Cobb, CA|        0.01|  8|   ,nc,|automatic|1730020628650|M 0.7 - 8 km WNW ...|      0|earthquake|,nearby-cities,or...|null|1730022134116|https://earthquak...|[-122.80899810791...|
+| null|null|  74514962|https://earthquak...|       0.04537|null|             207.0|  ,hv74514962,|      2.0|     md|null| hv|  39|12 km E of Pāhala...| 0.100000001| 62|   ,hv,|automatic|1730020600960|M 2.0 - 12 km E o...|      0|earthquake| ,origin,phase-data,|null|1730020688020|https://earthquak...|[-155.35932922363...|
++-----+----+----------+--------------------+--------------+----+------------------+--------------+---------+-------+----+---+----+--------------------+------------+---+-------+---------+-------------+--------------------+-------+----------+--------------------+----+-------------+--------------------+--------------------+
+only showing top 20 rows
+
+root
+ |-- alert: string (nullable = true)
+ |-- cdi: double (nullable = true)
+ |-- code: string (nullable = true)
+ |-- detail: string (nullable = true)
+ |-- dmin: double (nullable = true)
+ |-- felt: long (nullable = true)
+ |-- gap: double (nullable = true)
+ |-- ids: string (nullable = true)
+ |-- mag: double (nullable = true)
+ |-- magType: string (nullable = true)
+ |-- mmi: double (nullable = true)
+ |-- net: string (nullable = true)
+ |-- nst: long (nullable = true)
+ |-- place: string (nullable = true)
+ |-- rms: double (nullable = true)
+ |-- sig: long (nullable = true)
+ |-- sources: string (nullable = true)
+ |-- status: string (nullable = true)
+ |-- time: long (nullable = true)
+ |-- title: string (nullable = true)
+ |-- tsunami: long (nullable = true)
+ |-- type: string (nullable = true)
+ |-- types: string (nullable = true)
+ |-- tz: string (nullable = true)
+ |-- updated: long (nullable = true)
+ |-- url: string (nullable = true)
+ |-- coordinates: array (nullable = true)
+ |    |-- element: double (containsNull = true)
+ 
+ ## Create a new column 'geometry' with the desired structure
+ +-----+----+----------+--------------------+--------------+----+------------------+--------------+---------+-------+----+---+----+--------------------+------------+---+-------+---------+-------------+--------------------+-------+----------+--------------------+----+-------------+--------------------+--------------------+
+|alert| cdi|      code|              detail|          dmin|felt|               gap|           ids|      mag|magType| mmi|net| nst|               place|         rms|sig|sources|   status|         time|               title|tsunami|      type|               types|  tz|      updated|                 url|            geometry|
++-----+----+----------+--------------------+--------------+----+------------------+--------------+---------+-------+----+---+----+--------------------+------------+---+-------+---------+-------------+--------------------+-------+----------+--------------------+----+-------------+--------------------+--------------------+
+| null|null|024dtzecs0|https://earthquak...|          null|null|              null|,ak024dtzecs0,|      1.6|     ml|null| ak|null|21 km WSW of Susi...|        0.62| 39|   ,ak,|automatic|1730027697762|M 1.6 - 21 km WSW...|      0|earthquake| ,origin,phase-data,|null|1730027817500|https://earthquak...|{-150.8969, 61.48...|
+| null|null|024dtz1fvh|https://earthquak...|          null|null|              null|,ak024dtz1fvh,|      2.1|     ml|null| ak|null|57 km NNE of Kobu...|        0.59| 68|   ,ak,|automatic|1730026472611|M 2.1 - 57 km NNE...|      0|earthquake| ,origin,phase-data,|null|1730027152415|https://earthquak...|{-156.156, 67.339...|
+| null|null|024dtyx5f5|https://earthquak...|          null|null|              null|,ak024dtyx5f5,|      1.7|     ml|null| ak|null|32 km NNW of Belu...|        0.86| 44|   ,ak,|automatic|1730025270892|M 1.7 - 32 km NNW...|      0|earthquake| ,origin,phase-data,|null|1730025428058|https://earthquak...|{-151.3031, 61.40...|
+| null|null|024dtyw8ma|https://earthquak...|          null|null|              null|,ak024dtyw8ma,|      1.8|     ml|null| ak|null|39 km ENE of Pedr...|        0.25| 50|   ,ak,|automatic|1730025005789|M 1.8 - 39 km ENE...|      0|earthquake| ,origin,phase-data,|null|1730025113511|https://earthquak...|{-153.4501, 59.91...|
+| null|null|  2024vcxq|https://earthquak...|0.009010146372|null|       48.52166748|  ,ok2024vcxq,|     2.29|     ml|null| ok|  47|9 km WNW of Union...|0.9172689693| 81|   ,ok,|automatic|1730024907497|M 2.3 - 9 km WNW ...|      0|earthquake| ,origin,phase-data,|null|1730025515584|https://earthquak...|{-98.03295898, 35...|
+| null|null|024dtyvgeh|https://earthquak...|          null|null|              null|,ak024dtyvgeh,|      1.1|     ml|null| ak|null|56 km WNW of Niki...|        1.22| 19|   ,ak,|automatic|1730024785316|M 1.1 - 56 km WNW...|      0|earthquake| ,origin,phase-data,|null|1730025156519|https://earthquak...|{-152.243, 60.891...|
+| null|null|024dtyuth6|https://earthquak...|          null|null|              null|,ak024dtyuth6,|      1.3|     ml|null| ak|null|34 km ESE of Mint...|        0.73| 26|   ,ak,|automatic|1730024623163|M 1.3 - 34 km ESE...|      0|earthquake| ,origin,phase-data,|null|1730024769645|https://earthquak...|{-148.6829, 65.02...|
+| null|null|  00886893|https://earthquak...|         0.325|null|            263.37|  ,nn00886893,|      1.0|     ml|null| nn|  21|28 km NW of Furna...|      0.1546| 15|   ,nn,|automatic|1730024542814|M 1.0 - 28 km NW ...|      0|earthquake| ,origin,phase-data,|null|1730024669108|https://earthquak...|{-117.0904, 36.61...|
+| null| 3.8|  7000nngq|https://earthquak...|          0.21|  22|              69.0|  ,us7000nngq,|      5.1|     mb|null| us|  60|6 km E of Hualien...|         1.2|409|   ,us,| reviewed|1730024505232|M 5.1 - 6 km E of...|      0|earthquake|,dyfi,origin,phas...|null|1730028144223|https://earthquak...|{121.6705, 23.974...|
+| null|null|024dtyt4ec|https://earthquak...|          null|null|              null|,ak024dtyt4ec,|      1.9|     ml|null| ak|null|48 km SSE of Cant...|        0.69| 56|   ,ak,|automatic|1730024151408|M 1.9 - 48 km SSE...|      0|earthquake| ,origin,phase-data,|null|1730024247443|https://earthquak...|{-148.7237, 62.96...|
+| null|null|  00886892|https://earthquak...|         0.393|null|270.08000000000004|  ,nn00886892,|      1.1|     ml|null| nn|  10|29 km WNW of Furn...|      0.2614| 19|   ,nn,|automatic|1730023709471|M 1.1 - 29 km WNW...|      0|earthquake| ,origin,phase-data,|null|1730023846874|https://earthquak...|{-117.1326, 36.59...|
+| null|null|  00886890|https://earthquak...|         0.353|null|            271.39|  ,nn00886890,|      1.2|     ml|null| nn|  20|28 km WNW of Furn...|      0.2035| 22|   ,nn,|automatic|1730023149085|M 1.2 - 28 km WNW...|      0|earthquake| ,origin,phase-data,|null|1730023288765|https://earthquak...|{-117.1301, 36.56...|
+| null|null|  75079586|https://earthquak...|       0.01799|null|              95.0|  ,nc75079586,|     0.27|     md|null| nc|   6|7 km NNW of The G...|        0.01|  1|   ,nc,|automatic|1730022784950|M 0.3 - 7 km NNW ...|      0|earthquake|,nearby-cities,or...|null|1730024239358|https://earthquak...|{-122.80766296386...|
+| null|null|  7000nngm|https://earthquak...|         0.744|null|              67.0|  ,us7000nngm,|      4.9|    mww|null| us|  53|87 km SE of San P...|        1.43|369|   ,us,| reviewed|1730022612706|M 4.9 - 87 km SE ...|      0|earthquake| ,origin,phase-data,|null|1730024841040|https://earthquak...|{-67.6152, -23.48...|
+| null|null|  2024vcwh|https://earthquak...| 0.06292840093|null|       58.01319885|  ,ok2024vcwh,|      1.8|     ml|null| ok|  37|10 km NNW of Alex...|0.5761931562| 50|   ,ok,|automatic|1730022397293|M 1.8 - 10 km NNW...|      0|earthquake| ,origin,phase-data,|null|1730023028742|https://earthquak...|{-97.8219986, 34....|
+| null|null|  74514997|https://earthquak...|       0.04215|null|             161.0|  ,hv74514997,|2.1400001|     md|null| hv|  51|12 km E of Pāhala...| 0.119999997| 70|   ,hv,|automatic|1730022144780|M 2.1 - 12 km E o...|      0|earthquake| ,origin,phase-data,|null|1730022309270|https://earthquak...|{-155.36433410644...|
+| null|null|  75079581|https://earthquak...|      0.005541|null|              78.0|  ,nc75079581,|     0.79|     md|null| nc|  20|3 km NW of The Ge...|        0.02| 10|   ,nc,|automatic|1730021166430|M 0.8 - 3 km NW o...|      0|earthquake|,nearby-cities,or...|null|1730022736186|https://earthquak...|{-122.78083038330...|
+| null|null|  74514972|https://earthquak...|       0.04568|null|             182.0|  ,hv74514972,|      2.0|     md|null| hv|  45|12 km E of Pāhala...| 0.119999997| 62|   ,hv,|automatic|1730020706800|M 2.0 - 12 km E o...|      0|earthquake| ,origin,phase-data,|null|1730020815040|https://earthquak...|{-155.36199951171...|
+| null|null|  75079576|https://earthquak...|       0.01508|null|              54.0|  ,nc75079576,|     0.71|     md|null| nc|  15|8 km WNW of Cobb, CA|        0.01|  8|   ,nc,|automatic|1730020628650|M 0.7 - 8 km WNW ...|      0|earthquake|,nearby-cities,or...|null|1730022134116|https://earthquak...|{-122.80899810791...|
+| null|null|  74514962|https://earthquak...|       0.04537|null|             207.0|  ,hv74514962,|      2.0|     md|null| hv|  39|12 km E of Pāhala...| 0.100000001| 62|   ,hv,|automatic|1730020600960|M 2.0 - 12 km E o...|      0|earthquake| ,origin,phase-data,|null|1730020688020|https://earthquak...|{-155.35932922363...|
++-----+----+----------+--------------------+--------------+----+------------------+--------------+---------+-------+----+---+----+--------------------+------------+---+-------+---------+-------------+--------------------+-------+----------+--------------------+----+-------------+--------------------+--------------------+
+only showing top 20 rows
+
+root
+ |-- alert: string (nullable = true)
+ |-- cdi: double (nullable = true)
+ |-- code: string (nullable = true)
+ |-- detail: string (nullable = true)
+ |-- dmin: double (nullable = true)
+ |-- felt: long (nullable = true)
+ |-- gap: double (nullable = true)
+ |-- ids: string (nullable = true)
+ |-- mag: double (nullable = true)
+ |-- magType: string (nullable = true)
+ |-- mmi: double (nullable = true)
+ |-- net: string (nullable = true)
+ |-- nst: long (nullable = true)
+ |-- place: string (nullable = true)
+ |-- rms: double (nullable = true)
+ |-- sig: long (nullable = true)
+ |-- sources: string (nullable = true)
+ |-- status: string (nullable = true)
+ |-- time: long (nullable = true)
+ |-- title: string (nullable = true)
+ |-- tsunami: long (nullable = true)
+ |-- type: string (nullable = true)
+ |-- types: string (nullable = true)
+ |-- tz: string (nullable = true)
+ |-- updated: long (nullable = true)
+ |-- url: string (nullable = true)
+ |-- geometry: struct (nullable = false)
+ |    |-- longitude: double (nullable = true)
+ |    |-- latitude: double (nullable = true)
+ |    |-- depth: double (nullable = true)
+ 
+ ##clean data and sequence data
+ 
+ +---------+--------------------+-------------+-------------+----+--------------------+--------------------+----+----+----+-----+---------+-------+---+---+----------+--------------+-------+--------------------+----+--------------+------------+------------------+-------+----------+--------------------+--------------------+
+|      mag|               place|         time|      updated|  tz|                 url|              detail|felt| cdi| mmi|alert|   status|tsunami|sig|net|      code|           ids|sources|               types| nst|          dmin|         rms|               gap|magType|      type|               title|            geometry|
++---------+--------------------+-------------+-------------+----+--------------------+--------------------+----+----+----+-----+---------+-------+---+---+----------+--------------+-------+--------------------+----+--------------+------------+------------------+-------+----------+--------------------+--------------------+
+|      1.6|21 km WSW of Susi...|1730027697762|1730027817500|null|https://earthquak...|https://earthquak...|null|null|null| null|automatic|      0| 39| ak|024dtzecs0|,ak024dtzecs0,|   ,ak,| ,origin,phase-data,|null|          null|        0.62|              null|     ml|earthquake|M 1.6 - 21 km WSW...|{-150.8969, 61.48...|
+|      2.1|57 km NNE of Kobu...|1730026472611|1730027152415|null|https://earthquak...|https://earthquak...|null|null|null| null|automatic|      0| 68| ak|024dtz1fvh|,ak024dtz1fvh,|   ,ak,| ,origin,phase-data,|null|          null|        0.59|              null|     ml|earthquake|M 2.1 - 57 km NNE...|{-156.156, 67.339...|
+|      1.7|32 km NNW of Belu...|1730025270892|1730025428058|null|https://earthquak...|https://earthquak...|null|null|null| null|automatic|      0| 44| ak|024dtyx5f5|,ak024dtyx5f5,|   ,ak,| ,origin,phase-data,|null|          null|        0.86|              null|     ml|earthquake|M 1.7 - 32 km NNW...|{-151.3031, 61.40...|
+|      1.8|39 km ENE of Pedr...|1730025005789|1730025113511|null|https://earthquak...|https://earthquak...|null|null|null| null|automatic|      0| 50| ak|024dtyw8ma|,ak024dtyw8ma,|   ,ak,| ,origin,phase-data,|null|          null|        0.25|              null|     ml|earthquake|M 1.8 - 39 km ENE...|{-153.4501, 59.91...|
+|     2.29|9 km WNW of Union...|1730024907497|1730025515584|null|https://earthquak...|https://earthquak...|null|null|null| null|automatic|      0| 81| ok|  2024vcxq|  ,ok2024vcxq,|   ,ok,| ,origin,phase-data,|  47|0.009010146372|0.9172689693|       48.52166748|     ml|earthquake|M 2.3 - 9 km WNW ...|{-98.03295898, 35...|
+|      1.1|56 km WNW of Niki...|1730024785316|1730025156519|null|https://earthquak...|https://earthquak...|null|null|null| null|automatic|      0| 19| ak|024dtyvgeh|,ak024dtyvgeh,|   ,ak,| ,origin,phase-data,|null|          null|        1.22|              null|     ml|earthquake|M 1.1 - 56 km WNW...|{-152.243, 60.891...|
+|      1.3|34 km ESE of Mint...|1730024623163|1730024769645|null|https://earthquak...|https://earthquak...|null|null|null| null|automatic|      0| 26| ak|024dtyuth6|,ak024dtyuth6,|   ,ak,| ,origin,phase-data,|null|          null|        0.73|              null|     ml|earthquake|M 1.3 - 34 km ESE...|{-148.6829, 65.02...|
+|      1.0|28 km NW of Furna...|1730024542814|1730024669108|null|https://earthquak...|https://earthquak...|null|null|null| null|automatic|      0| 15| nn|  00886893|  ,nn00886893,|   ,nn,| ,origin,phase-data,|  21|         0.325|      0.1546|            263.37|     ml|earthquake|M 1.0 - 28 km NW ...|{-117.0904, 36.61...|
+|      5.1|6 km E of Hualien...|1730024505232|1730028144223|null|https://earthquak...|https://earthquak...|  22| 3.8|null| null| reviewed|      0|409| us|  7000nngq|  ,us7000nngq,|   ,us,|,dyfi,origin,phas...|  60|          0.21|         1.2|              69.0|     mb|earthquake|M 5.1 - 6 km E of...|{121.6705, 23.974...|
+|      1.9|48 km SSE of Cant...|1730024151408|1730024247443|null|https://earthquak...|https://earthquak...|null|null|null| null|automatic|      0| 56| ak|024dtyt4ec|,ak024dtyt4ec,|   ,ak,| ,origin,phase-data,|null|          null|        0.69|              null|     ml|earthquake|M 1.9 - 48 km SSE...|{-148.7237, 62.96...|
+|      1.1|29 km WNW of Furn...|1730023709471|1730023846874|null|https://earthquak...|https://earthquak...|null|null|null| null|automatic|      0| 19| nn|  00886892|  ,nn00886892,|   ,nn,| ,origin,phase-data,|  10|         0.393|      0.2614|270.08000000000004|     ml|earthquake|M 1.1 - 29 km WNW...|{-117.1326, 36.59...|
+|      1.2|28 km WNW of Furn...|1730023149085|1730023288765|null|https://earthquak...|https://earthquak...|null|null|null| null|automatic|      0| 22| nn|  00886890|  ,nn00886890,|   ,nn,| ,origin,phase-data,|  20|         0.353|      0.2035|            271.39|     ml|earthquake|M 1.2 - 28 km WNW...|{-117.1301, 36.56...|
+|     0.27|7 km NNW of The G...|1730022784950|1730024239358|null|https://earthquak...|https://earthquak...|null|null|null| null|automatic|      0|  1| nc|  75079586|  ,nc75079586,|   ,nc,|,nearby-cities,or...|   6|       0.01799|        0.01|              95.0|     md|earthquake|M 0.3 - 7 km NNW ...|{-122.80766296386...|
+|      4.9|87 km SE of San P...|1730022612706|1730024841040|null|https://earthquak...|https://earthquak...|null|null|null| null| reviewed|      0|369| us|  7000nngm|  ,us7000nngm,|   ,us,| ,origin,phase-data,|  53|         0.744|        1.43|              67.0|    mww|earthquake|M 4.9 - 87 km SE ...|{-67.6152, -23.48...|
+|      1.8|10 km NNW of Alex...|1730022397293|1730023028742|null|https://earthquak...|https://earthquak...|null|null|null| null|automatic|      0| 50| ok|  2024vcwh|  ,ok2024vcwh,|   ,ok,| ,origin,phase-data,|  37| 0.06292840093|0.5761931562|       58.01319885|     ml|earthquake|M 1.8 - 10 km NNW...|{-97.8219986, 34....|
+|2.1400001|12 km E of Pāhala...|1730022144780|1730022309270|null|https://earthquak...|https://earthquak...|null|null|null| null|automatic|      0| 70| hv|  74514997|  ,hv74514997,|   ,hv,| ,origin,phase-data,|  51|       0.04215| 0.119999997|             161.0|     md|earthquake|M 2.1 - 12 km E o...|{-155.36433410644...|
+|     0.79|3 km NW of The Ge...|1730021166430|1730022736186|null|https://earthquak...|https://earthquak...|null|null|null| null|automatic|      0| 10| nc|  75079581|  ,nc75079581,|   ,nc,|,nearby-cities,or...|  20|      0.005541|        0.02|              78.0|     md|earthquake|M 0.8 - 3 km NW o...|{-122.78083038330...|
+|      2.0|12 km E of Pāhala...|1730020706800|1730020815040|null|https://earthquak...|https://earthquak...|null|null|null| null|automatic|      0| 62| hv|  74514972|  ,hv74514972,|   ,hv,| ,origin,phase-data,|  45|       0.04568| 0.119999997|             182.0|     md|earthquake|M 2.0 - 12 km E o...|{-155.36199951171...|
+|     0.71|8 km WNW of Cobb, CA|1730020628650|1730022134116|null|https://earthquak...|https://earthquak...|null|null|null| null|automatic|      0|  8| nc|  75079576|  ,nc75079576,|   ,nc,|,nearby-cities,or...|  15|       0.01508|        0.01|              54.0|     md|earthquake|M 0.7 - 8 km WNW ...|{-122.80899810791...|
+|      2.0|12 km E of Pāhala...|1730020600960|1730020688020|null|https://earthquak...|https://earthquak...|null|null|null| null|automatic|      0| 62| hv|  74514962|  ,hv74514962,|   ,hv,| ,origin,phase-data,|  39|       0.04537| 0.100000001|             207.0|     md|earthquake|M 2.0 - 12 km E o...|{-155.35932922363...|
++---------+--------------------+-------------+-------------+----+--------------------+--------------------+----+----+----+-----+---------+-------+---+---+----------+--------------+-------+--------------------+----+--------------+------------+------------------+-------+----------+--------------------+--------------------+
+only showing top 20 rows
+
+root
+ |-- mag: double (nullable = true)
+ |-- place: string (nullable = true)
+ |-- time: long (nullable = true)
+ |-- updated: long (nullable = true)
+ |-- tz: string (nullable = true)
+ |-- url: string (nullable = true)
+ |-- detail: string (nullable = true)
+ |-- felt: long (nullable = true)
+ |-- cdi: double (nullable = true)
+ |-- mmi: double (nullable = true)
+ |-- alert: string (nullable = true)
+ |-- status: string (nullable = true)
+ |-- tsunami: long (nullable = true)
+ |-- sig: long (nullable = true)
+ |-- net: string (nullable = true)
+ |-- code: string (nullable = true)
+ |-- ids: string (nullable = true)
+ |-- sources: string (nullable = true)
+ |-- types: string (nullable = true)
+ |-- nst: long (nullable = true)
+ |-- dmin: double (nullable = true)
+ |-- rms: double (nullable = true)
+ |-- gap: double (nullable = true)
+ |-- magType: string (nullable = true)
+ |-- type: string (nullable = true)
+ |-- title: string (nullable = true)
+ |-- geometry: struct (nullable = false)
+ |    |-- longitude: double (nullable = true)
+ |    |-- latitude: double (nullable = true)
+ |    |-- depth: double (nullable = true)
+
+
+### apply transformation and sequence clean df
++---------+--------------------+-------------------+-------------------+----+--------------------+--------------------+----+----+----+-----+---------+-------+---+---+----------+--------------+-------+--------------------+----+--------------+------------+------------------+-------+----------+--------------------+--------------------+--------------------+--------------------+
+|      mag|               place|               time|            updated|  tz|                 url|              detail|felt| cdi| mmi|alert|   status|tsunami|sig|net|      code|           ids|sources|               types| nst|          dmin|         rms|               gap|magType|      type|               title|                area|            geometry|         insert_date|
++---------+--------------------+-------------------+-------------------+----+--------------------+--------------------+----+----+----+-----+---------+-------+---+---+----------+--------------+-------+--------------------+----+--------------+------------+------------------+-------+----------+--------------------+--------------------+--------------------+--------------------+
+|      1.6|21 km WSW of Susi...|2024-10-27 16:44:57|2024-10-27 16:46:57|null|https://earthquak...|https://earthquak...|null|null|null| null|automatic|      0| 39| ak|024dtzecs0|,ak024dtzecs0,|   ,ak,| ,origin,phase-data,|null|          null|        0.62|              null|     ml|earthquake|M 1.6 - 21 km WSW...|     Susitna, Alaska|{-150.8969, 61.48...|2024-10-27 19:34:...|
+|      2.1|57 km NNE of Kobu...|2024-10-27 16:24:32|2024-10-27 16:35:52|null|https://earthquak...|https://earthquak...|null|null|null| null|automatic|      0| 68| ak|024dtz1fvh|,ak024dtz1fvh,|   ,ak,| ,origin,phase-data,|null|          null|        0.59|              null|     ml|earthquake|M 2.1 - 57 km NNE...|       Kobuk, Alaska|{-156.156, 67.339...|2024-10-27 19:34:...|
+|      1.7|32 km NNW of Belu...|2024-10-27 16:04:30|2024-10-27 16:07:08|null|https://earthquak...|https://earthquak...|null|null|null| null|automatic|      0| 44| ak|024dtyx5f5|,ak024dtyx5f5,|   ,ak,| ,origin,phase-data,|null|          null|        0.86|              null|     ml|earthquake|M 1.7 - 32 km NNW...|      Beluga, Alaska|{-151.3031, 61.40...|2024-10-27 19:34:...|
+|      1.8|39 km ENE of Pedr...|2024-10-27 16:00:05|2024-10-27 16:01:53|null|https://earthquak...|https://earthquak...|null|null|null| null|automatic|      0| 50| ak|024dtyw8ma|,ak024dtyw8ma,|   ,ak,| ,origin,phase-data,|null|          null|        0.25|              null|     ml|earthquake|M 1.8 - 39 km ENE...|   Pedro Bay, Alaska|{-153.4501, 59.91...|2024-10-27 19:34:...|
+|     2.29|9 km WNW of Union...|2024-10-27 15:58:27|2024-10-27 16:08:35|null|https://earthquak...|https://earthquak...|null|null|null| null|automatic|      0| 81| ok|  2024vcxq|  ,ok2024vcxq,|   ,ok,| ,origin,phase-data,|  47|0.009010146372|0.9172689693|       48.52166748|     ml|earthquake|M 2.3 - 9 km WNW ...|Union City, Oklahoma|{-98.03295898, 35...|2024-10-27 19:34:...|
+|      1.1|56 km WNW of Niki...|2024-10-27 15:56:25|2024-10-27 16:02:36|null|https://earthquak...|https://earthquak...|null|null|null| null|automatic|      0| 19| ak|024dtyvgeh|,ak024dtyvgeh,|   ,ak,| ,origin,phase-data,|null|          null|        1.22|              null|     ml|earthquake|M 1.1 - 56 km WNW...|     Nikiski, Alaska|{-152.243, 60.891...|2024-10-27 19:34:...|
+|      1.3|34 km ESE of Mint...|2024-10-27 15:53:43|2024-10-27 15:56:09|null|https://earthquak...|https://earthquak...|null|null|null| null|automatic|      0| 26| ak|024dtyuth6|,ak024dtyuth6,|   ,ak,| ,origin,phase-data,|null|          null|        0.73|              null|     ml|earthquake|M 1.3 - 34 km ESE...|       Minto, Alaska|{-148.6829, 65.02...|2024-10-27 19:34:...|
+|      1.0|28 km NW of Furna...|2024-10-27 15:52:22|2024-10-27 15:54:29|null|https://earthquak...|https://earthquak...|null|null|null| null|automatic|      0| 15| nn|  00886893|  ,nn00886893,|   ,nn,| ,origin,phase-data,|  21|         0.325|      0.1546|            263.37|     ml|earthquake|M 1.0 - 28 km NW ...|Furnace Creek, Ca...|{-117.0904, 36.61...|2024-10-27 19:34:...|
+|      5.1|6 km E of Hualien...|2024-10-27 15:51:45|2024-10-27 16:52:24|null|https://earthquak...|https://earthquak...|  22| 3.8|null| null| reviewed|      0|409| us|  7000nngq|  ,us7000nngq,|   ,us,|,dyfi,origin,phas...|  60|          0.21|         1.2|              69.0|     mb|earthquake|M 5.1 - 6 km E of...|Hualien City, Taiwan|{121.6705, 23.974...|2024-10-27 19:34:...|
+|      1.9|48 km SSE of Cant...|2024-10-27 15:45:51|2024-10-27 15:47:27|null|https://earthquak...|https://earthquak...|null|null|null| null|automatic|      0| 56| ak|024dtyt4ec|,ak024dtyt4ec,|   ,ak,| ,origin,phase-data,|null|          null|        0.69|              null|     ml|earthquake|M 1.9 - 48 km SSE...|    Cantwell, Alaska|{-148.7237, 62.96...|2024-10-27 19:34:...|
+|      1.1|29 km WNW of Furn...|2024-10-27 15:38:29|2024-10-27 15:40:46|null|https://earthquak...|https://earthquak...|null|null|null| null|automatic|      0| 19| nn|  00886892|  ,nn00886892,|   ,nn,| ,origin,phase-data,|  10|         0.393|      0.2614|270.08000000000004|     ml|earthquake|M 1.1 - 29 km WNW...|Furnace Creek, Ca...|{-117.1326, 36.59...|2024-10-27 19:34:...|
+|      1.2|28 km WNW of Furn...|2024-10-27 15:29:09|2024-10-27 15:31:28|null|https://earthquak...|https://earthquak...|null|null|null| null|automatic|      0| 22| nn|  00886890|  ,nn00886890,|   ,nn,| ,origin,phase-data,|  20|         0.353|      0.2035|            271.39|     ml|earthquake|M 1.2 - 28 km WNW...|Furnace Creek, Ca...|{-117.1301, 36.56...|2024-10-27 19:34:...|
+|     0.27|7 km NNW of The G...|2024-10-27 15:23:04|2024-10-27 15:47:19|null|https://earthquak...|https://earthquak...|null|null|null| null|automatic|      0|  1| nc|  75079586|  ,nc75079586,|   ,nc,|,nearby-cities,or...|   6|       0.01799|        0.01|              95.0|     md|earthquake|M 0.3 - 7 km NNW ...|     The Geysers, CA|{-122.80766296386...|2024-10-27 19:34:...|
+|      4.9|87 km SE of San P...|2024-10-27 15:20:12|2024-10-27 15:57:21|null|https://earthquak...|https://earthquak...|null|null|null| null| reviewed|      0|369| us|  7000nngm|  ,us7000nngm,|   ,us,| ,origin,phase-data,|  53|         0.744|        1.43|              67.0|    mww|earthquake|M 4.9 - 87 km SE ...|San Pedro de Atac...|{-67.6152, -23.48...|2024-10-27 19:34:...|
+|      1.8|10 km NNW of Alex...|2024-10-27 15:16:37|2024-10-27 15:27:08|null|https://earthquak...|https://earthquak...|null|null|null| null|automatic|      0| 50| ok|  2024vcwh|  ,ok2024vcwh,|   ,ok,| ,origin,phase-data,|  37| 0.06292840093|0.5761931562|       58.01319885|     ml|earthquake|M 1.8 - 10 km NNW...|      Alex, Oklahoma|{-97.8219986, 34....|2024-10-27 19:34:...|
+|2.1400001|12 km E of Pāhala...|2024-10-27 15:12:24|2024-10-27 15:15:09|null|https://earthquak...|https://earthquak...|null|null|null| null|automatic|      0| 70| hv|  74514997|  ,hv74514997,|   ,hv,| ,origin,phase-data,|  51|       0.04215| 0.119999997|             161.0|     md|earthquake|M 2.1 - 12 km E o...|      Pāhala, Hawaii|{-155.36433410644...|2024-10-27 19:34:...|
+|     0.79|3 km NW of The Ge...|2024-10-27 14:56:06|2024-10-27 15:22:16|null|https://earthquak...|https://earthquak...|null|null|null| null|automatic|      0| 10| nc|  75079581|  ,nc75079581,|   ,nc,|,nearby-cities,or...|  20|      0.005541|        0.02|              78.0|     md|earthquake|M 0.8 - 3 km NW o...|     The Geysers, CA|{-122.78083038330...|2024-10-27 19:34:...|
+|      2.0|12 km E of Pāhala...|2024-10-27 14:48:26|2024-10-27 14:50:15|null|https://earthquak...|https://earthquak...|null|null|null| null|automatic|      0| 62| hv|  74514972|  ,hv74514972,|   ,hv,| ,origin,phase-data,|  45|       0.04568| 0.119999997|             182.0|     md|earthquake|M 2.0 - 12 km E o...|      Pāhala, Hawaii|{-155.36199951171...|2024-10-27 19:34:...|
+|     0.71|8 km WNW of Cobb, CA|2024-10-27 14:47:08|2024-10-27 15:12:14|null|https://earthquak...|https://earthquak...|null|null|null| null|automatic|      0|  8| nc|  75079576|  ,nc75079576,|   ,nc,|,nearby-cities,or...|  15|       0.01508|        0.01|              54.0|     md|earthquake|M 0.7 - 8 km WNW ...|            Cobb, CA|{-122.80899810791...|2024-10-27 19:34:...|
+|      2.0|12 km E of Pāhala...|2024-10-27 14:46:40|2024-10-27 14:48:08|null|https://earthquak...|https://earthquak...|null|null|null| null|automatic|      0| 62| hv|  74514962|  ,hv74514962,|   ,hv,| ,origin,phase-data,|  39|       0.04537| 0.100000001|             207.0|     md|earthquake|M 2.0 - 12 km E o...|      Pāhala, Hawaii|{-155.35932922363...|2024-10-27 19:34:...|
++---------+--------------------+-------------------+-------------------+----+--------------------+--------------------+----+----+----+-----+---------+-------+---+---+----------+--------------+-------+--------------------+----+--------------+------------+------------------+-------+----------+--------------------+--------------------+--------------------+--------------------+
+only showing top 20 rows
+
+root
+ |-- mag: double (nullable = true)
+ |-- place: string (nullable = true)
+ |-- time: timestamp (nullable = true)
+ |-- updated: timestamp (nullable = true)
+ |-- tz: string (nullable = true)
+ |-- url: string (nullable = true)
+ |-- detail: string (nullable = true)
+ |-- felt: long (nullable = true)
+ |-- cdi: double (nullable = true)
+ |-- mmi: double (nullable = true)
+ |-- alert: string (nullable = true)
+ |-- status: string (nullable = true)
+ |-- tsunami: long (nullable = true)
+ |-- sig: long (nullable = true)
+ |-- net: string (nullable = true)
+ |-- code: string (nullable = true)
+ |-- ids: string (nullable = true)
+ |-- sources: string (nullable = true)
+ |-- types: string (nullable = true)
+ |-- nst: long (nullable = true)
+ |-- dmin: double (nullable = true)
+ |-- rms: double (nullable = true)
+ |-- gap: double (nullable = true)
+ |-- magType: string (nullable = true)
+ |-- type: string (nullable = true)
+ |-- title: string (nullable = true)
+ |-- area: string (nullable = true)
+ |-- geometry: struct (nullable = false)
+ |    |-- longitude: double (nullable = true)
+ |    |-- latitude: double (nullable = true)
+ |    |-- depth: double (nullable = true)
+ |-- insert_date: timestamp (nullable = false)
+
+ 
+ ###datatype info
+ 
+ String: The string type in Spark corresponds directly to the STRING type in BigQuery, so no casting is needed.
+
+Double: The double type in Spark corresponds to the FLOAT64 type in BigQuery, which means you can use it directly without casting.
+
+Long: The long type in Spark corresponds to the INT64 type in BigQuery, so you can use this directly as well.
+
+Struct: The struct type in Spark can be directly mapped to a STRUCT type in BigQuery, provided that you define the fields correctly in your BigQuery schema.
+
+Nullable Fields: Both Spark and BigQuery handle nullable fields similarly, so you won’t need to make changes for nullable types.
+
+Summary
+The schema can be used directly in BigQuery without the need for type casting. Here’s how the mapping would look:
+
+Spark Type	BigQuery Type
+string	STRING
+double	FLOAT64
+long	INT64
+struct	STRUCT
+Struct Field Example
+For the geometry struct:
+
+You would define it in BigQuery as:
+sql
+Copy code
+geometry STRUCT<
+  longitude FLOAT64,
+  latitude FLOAT64,
+  depth FLOAT64
+>
+You can create a table in BigQuery with this schema directly from your Spark DataFrame without needing any changes. 
+Just ensure your data is clean and follows the expected types, especially for the struct.
+
+
+
+#### why we use .mode('append') even if we add   .option("writeDisposition", "WRITE_APPEND")
+ erro: pyspark.sql.utils.IllegalArgumentException: SaveMode is set to ErrorIfExists and Table bwt-project-433109.earthquake_db.earthquake_data already exists. Did you want to add data to the table by setting the SaveMode to Append? Example: df.write.format.options.mode(SaveMode.Append).save()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+######################################################################################################################################################
+
+import logging
+from pyspark.sql.functions import current_timestamp, col, explode, struct, to_timestamp, from_unixtime, expr
+from datetime import datetime
+import json
+import requests
+
+class Utils():
+
+    def extractallData(self,api_url):
+        ## by using get method extract the data from api
+        response = requests.get(api_url)
+
+        ##Check if the request was successful
+        if response.status_code == 200:
+            ##convert data into json
+            all_data = response.json()  # converts the (api)JSON response data into Python data types (usually a dictionary or a list).
+            # print("Extracted Data:", all_data)
+            logging.info(f"extract data successfully from {api_url}")
+            return json.dumps(all_data)  # Convert the Python dictionary to a JSON string
+
+        else:
+            logging.error(f"Failed to retrieve data. Status code: {response.status_code}")
+            return None
+
+    def writeParquetDataintoGCS(self,spark, source_data_df, gcs_location):
+        source_data_df.coalesce(2).write.mode("overwrite").parquet(gcs_location)
+        logging.info(f"Data written to {gcs_location}")
+
+    def readParquetFilefromGCS(self,spark, source_data_loc):
+
+        ## read data from gcs
+        src_raw_data_df = spark.read.parquet(source_data_loc)
+        logging.info(f"read data successfully from {source_data_loc}")
+        return src_raw_data_df
+
+    def extractRequiredDataAndFlatten(self,raw_data_df):
+
+        # using expoad flatten features
+        flattened_feature_df = raw_data_df.select(explode("features").alias("feature"))
+
+        ## Extract properties and coordinates from flattened_feature_df
+        properties_coordinated_df = flattened_feature_df.select(
+            col("feature.properties.*"),  # Select all fields from properties
+            col("feature.geometry.coordinates").alias("coordinates")  # Select coordinates field
+        )
+
+        ## conver UNIX timestamps( in milliseconds )to timestamp(Convert milliseconds to seconds and then to readable timestamp)
+        ##Generate column “area” - based on existing “place” column
+        ## Create a new column 'geometry' with the desired structure and apply transformation
+        ## add insert date column
+        clean_data_df = (properties_coordinated_df
+                         .withColumn('time', to_timestamp(from_unixtime(col('time') / 1000)))
+                         .withColumn('updated', to_timestamp(from_unixtime(col('updated') / 1000)))
+                         .withColumn('area', expr("substring(place, instr(place, 'of') + 3, length(place))"))
+                         .withColumn("geometry",
+                                     struct(
+                                         col("coordinates")[0].alias("longitude"),
+                                         col("coordinates")[1].alias("latitude"),
+                                         col("coordinates")[2].alias("depth")
+                                     )
+                                     )
+                         .withColumn('insert_date',current_timestamp())
+                         .drop(col("coordinates"))
+                         )
+
+        final_clean_data_df = (clean_data_df.select("mag", "place", "time", "updated", "tz", "url",
+                                                    "detail", "felt", "cdi", "mmi", "alert", "status",
+                                                    "tsunami", "sig", "net", "code", "ids", "sources",
+                                                    "types", "nst", "dmin", "rms", "gap", "magType", "type",
+                                                    "title", "area", "geometry", "insert_date"
+                                                    )
+                               )
+        # clean_data_df.show()
+        # clean_data_df.printSchema()
+        logging.info("flatten and transformation done")
+        return final_clean_data_df
+
+    def bqSchema(self):
+        """
+                Defines the schema for BigQuery.
+
+                Returns:
+                    list: A list of dictionaries representing the BigQuery schema.
+                """
+        # Define the schema with mode
+        bq_schema = {
+            "fields": [
+                {"name": "mag", "type": "FLOAT64", "mode": "NULLABLE"},
+                {"name": "place", "type": "STRING", "mode": "NULLABLE"},
+                {"name": "time", "type": "TIMESTAMP", "mode": "NULLABLE"},
+                {"name": "updated", "type": "TIMESTAMP", "mode": "NULLABLE"},
+                {"name": "tz", "type": "STRING", "mode": "NULLABLE"},
+                {"name": "url", "type": "STRING", "mode": "NULLABLE"},
+                {"name": "detail", "type": "STRING", "mode": "NULLABLE"},
+                {"name": "felt", "type": "INT64", "mode": "NULLABLE"},
+                {"name": "cdi", "type": "FLOAT64", "mode": "NULLABLE"},
+                {"name": "mmi", "type": "FLOAT64", "mode": "NULLABLE"},
+                {"name": "alert", "type": "STRING", "mode": "NULLABLE"},
+                {"name": "status", "type": "STRING", "mode": "NULLABLE"},
+                {"name": "tsunami", "type": "INT64", "mode": "NULLABLE"},
+                {"name": "sig", "type": "INT64", "mode": "NULLABLE"},
+                {"name": "net", "type": "STRING", "mode": "NULLABLE"},
+                {"name": "code", "type": "STRING", "mode": "NULLABLE"},
+                {"name": "ids", "type": "STRING", "mode": "NULLABLE"},
+                {"name": "sources", "type": "STRING", "mode": "NULLABLE"},
+                {"name": "types", "type": "STRING", "mode": "NULLABLE"},
+                {"name": "nst", "type": "INT64", "mode": "NULLABLE"},
+                {"name": "dmin", "type": "FLOAT64", "mode": "NULLABLE"},
+                {"name": "rms", "type": "FLOAT64", "mode": "NULLABLE"},
+                {"name": "gap", "type": "FLOAT64", "mode": "NULLABLE"},
+                {"name": "magType", "type": "STRING", "mode": "NULLABLE"},
+                {"name": "type", "type": "STRING", "mode": "NULLABLE"},
+                {"name": "title", "type": "STRING", "mode": "NULLABLE"},
+                {"name": "area", "type": "STRING", "mode": "NULLABLE"},
+                {
+                    "name": "geometry", "type": "RECORD", "mode": "REQUIRED", "fields": [
+                    {"name": "longitude", "type": "FLOAT64", "mode": "NULLABLE"},
+                    {"name": "latitude", "type": "FLOAT64", "mode": "NULLABLE"},
+                    {"name": "depth", "type": "FLOAT64", "mode": "NULLABLE"}
+                ]
+                },
+                {"name": "insert_date", "type": "TIMESTAMP", "mode": "REQUIRED"}
+            ]}
+
+        return bq_schema
+
+    def writeDataBigquery(self,output_db, data_df, bq_schema=None):
+        """
+                Writes data from a DataFrame to a specified BigQuery table.
+
+                Parameters:
+                    output_db (str): The target BigQuery table in the format 'project_id.dataset_id.table_id'.
+                    data_df (DataFrame): The DataFrame containing the data to be written.
+                    bq_schema (list, optional): The schema for the BigQuery table. If None, the schema will be fetched using the bqSchema method.
+
+                Returns:
+                    None
+        """
+        if bq_schema is None:
+            # call function bqSchema to get bq schema
+            bq_schema = self.bqSchema()
+        data_df.write.format('bigquery').option("table", output_db) \
+            .option('schema', bq_schema) \
+            .option("createDisposition", "CREATE_IF_NEEDED") \
+            .option("writeDisposition", "WRITE_APPEND") \
+            .mode('append')\
+            .save()
+        logging.info(f"Data load successfully to {output_db}")
+
+
+
+
+
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import current_timestamp, col, explode, struct, to_timestamp, from_unixtime, expr
+from datetime import datetime
+import argparse
+import requests
+import logging
+import  json
+from util import Utils
+import config as cnf
+
+
+
+if __name__=='__main__':
+    # Configure logging
+    logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+    spark = SparkSession.builder.master("local[*]").appName("extract_the_data_from_API").getOrCreate()
+    spark.conf.set("temporaryGcsBucket", cnf.temp_dataproc_bucket)
+
+    ## create Util obj
+    util_obj = Utils()
+
+    # Parse command-line arguments
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-api_url', '--api_url', required=True, help='API URL required')
+    parser.add_argument('-pipeline_nm', '--pipeline_nm', required=True, help='Pipeline name')
+    args = parser.parse_args()
+
+    api_url = args.api_url
+    pipeline_name = args.pipeline_nm
+
+    ###
+    source_data = util_obj.extractallData(api_url)
+    extracted_data_df = spark.read.json(spark.sparkContext.parallelize([source_data]))
+
+    ## landing location
+    util_obj.writeParquetDataintoGCS(spark, extracted_data_df,cnf.eq_landing_gcs_loc)
+
+    ## read data from landing loc
+    raw_data =util_obj.readParquetFilefromGCS(spark, cnf.eq_landing_gcs_loc)
+
+    ## extract the required data and flatten it
+    clean_data = util_obj.extractRequiredDataAndFlatten(raw_data)
+
+
+    ## write clean data into gcs silver location
+    util_obj.writeParquetDataintoGCS(spark, clean_data, cnf.eq_silver_gcs_loc)
+
+    ## write clean data into bigquery table
+    util_obj.writeDataBigquery(cnf.eq_bigquery_tbl_loc, clean_data)
+
+

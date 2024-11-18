@@ -1,20 +1,15 @@
 ################################################################################################
 """
 file_name - p3_read_from_silver_write_bq_gold.py
-desc - Main script for executing the Earthquake Data Extraction and Transformation pipeline.
+desc - Main script for read data from silver(GCS) layer location and write in golden layer
        This script performs the following operations:
        - Configures logging for tracking pipeline execution.
        - Initializes a Spark session with necessary configurations.
        - Creates an instance of the Utils class
        - Parses command-line arguments for API URL and pipeline name.
        - Executes a series of functions to:
-         1. Extract data from the specified API.
-         2. Write the extracted data to a landing location in GCS in Parquet format.
-         3. Read the Parquet file from GCS.
-         4. Extract and transform the required data by flattening it.
-         5. Write the cleaned data to a silver location in GCS in Parquet format.
-         6. Load the cleaned data into a specified BigQuery table.
-
+         1. Reads the Parquet file from silver GCS.
+         2. Loads the cleaned data into a BigQuery table.
 start_date - 2024-10-21
 """
 from pyspark.sql import SparkSession

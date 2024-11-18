@@ -1,0 +1,211 @@
+. Introduction
+1)This Python script is an ETL pipeline that extracts earthquake data from an API, 
+performs necessary transformations, and loads the cleaned data into Google Cloud services (GCS and BigQuery). using dataproc 
+
+2)this project have different modules like utility,config
+	utility module have the custome class which comtains multiple functions which we are use in our prject
+	config module contains all paths,creadiential,project id etc
+
+3) in this project we have to load daily as well as monthly data so for that i keep only one python script which take api url and pipeline name at run time  for that i use argument parser
+	as per api url data load will happen
+
+4) above etl pipeline i scheduale using cloud composer basically it is use to scheduale job 
+	for monthly data load (manual) and daily data load i create two separate data pipeline in composer 
+	using dataproc operators we craete cluster ,submit job,delete cluster this 3 job we see in airflow dag
+	
+	
+2. Script Overview
+		
+1)Logging: At the beginning of the script, logging is configured to track the status and errors for each function	
+2)Spark Session: A Spark session is initialized for distributed processing, and temporary configurations are set, such as the GCS bucket for storing intermediate data.
+3)Command-Line Arguments: The script uses argparse to read input parameters like api_url (the API endpoint to fetch data) and pipeline_nm (name of the pipeline).
+	It requires two arguments: api_url (the URL of the API to fetch data from) and pipeline_nm (the name of the pipeline). These inputs are required when running the script,
+	and their values are stored in the args variable for later use.
+
+3. Pipeline Steps
+The pipeline is executed by calling a series of functions
+Each step is wrapped in a try-except block to handle errors and log any issues.
+
+
+1) create unique job_id using current timestamp for audit table
+case1 : witout any error
+to mentain audit table we need function name ,start time of function ,end time of function,status,num of record process ,error msg 
+inside try  block first i define the function name that i am going to call that one is static one
+then i declare start time for that i use current timestamp it help us to find out when function is start the excuation
+ then call extractallData function which present in util class it take api url parameters
+ once it complete successfully control will come to the next line
+ there we are simply creating df 
+ if above line run successfully then in next line i define end time which is the current timestamp it help to find out how much time take to executed the function and 
+ i define status is successfullyit its static
+ here i use df.count for find out how much record process
+ here we didnt get any error so except block never execute
+ so control will come to the log_audit function call  here i pass parameters to log_audit function which i define before and after function call (spark, job_id, pipeline_name, function_name, 
+ start_time, end_time, status, process_record,cnf.eq_audit_tbl_loc,error_msg=None)
+ 
+ case 2 : if any error occurs while calling function
+ before  function call i define function name and start time then  lets suppose error comes while call the function then exception block will exceute 
+ and there i define end time and status = failed also the error msg
+ and last all paramter which i define i pass to log_audit  function 
+ 
+ 
+ 
+ ##### similar lagic i apply for every  function
+ ## then explain utility module and config module
+ 
+ ### explain airflow pipeline
+ "This Airflow DAG, named DataProc_Earthquake_daily_dataload_schedule, runs daily at 10 AM to process earthquake data.""
+ 
+ from airflow import DAG
+from airflow.utils.dates import days_ago
+from airflow.providers.google.cloud.operators.dataproc import DataprocCreateClusterOperator, DataprocSubmitJobOperator, DataprocDeleteClusterOperator
+from datetime import datetime, timedelta
+
+explaination: i import the required libraries and modules:
+1)DAG for defining a Directed Acyclic Graph in Airflow.
+2)days_ago to help set default start dates for tasks.
+3)DataprocCreateClusterOperator, DataprocSubmitJobOperator, and DataprocDeleteClusterOperator for working with Google Dataproc clusters.
+4)datetime and timedelta for working with dates and time intervals.
+ 
+ 
+ from airflow import DAG  # This imports the DAG class that allows us to define the tasks
+from airflow.utils.dates import days_ago  # This helps set the start date for the DAG
+from airflow.providers.google.cloud.operators.dataproc import DataprocCreateClusterOperator, DataprocSubmitJobOperator, DataprocDeleteClusterOperator  # DataprocCreateClusterOperator, DataprocSubmitJobOperator, and DataprocDeleteClusterOperator for working with Google Dataproc clusters.
+from datetime import datetime, timedelta  # datetime and timedelta for working with dates and time intervals.
+ 
+# Define the default arguments for all tasks in the DAG
+default_args = {
+    'owner': 'M_Airflow',  # The owner of the DAG
+    'retries': 2,  # How many times tasks should be retried if they fail
+    'depends_on_past': False,  # Tasks do not depend on previous runs
+    'retry_delay': timedelta(minutes=1),  # How long to wait before retrying a failed task
+    'start_date': datetime(2024, 11, 10),  # The date the DAG should start running
+}
+
+# Define the DAG with a name and schedule
+with DAG(
+        'DataProc_Earthquake_daily_dataload_schedule',  # Name of the DAG
+        default_args=default_args,  # Use the default arguments
+        schedule_interval='0 10 * * *',  # Set the schedule to run daily at 10 AM
+        catchup=False, #so it only runs from the start date forward. # Do not run past schedules if the DAG is missed
+) as dag:
+
+    # Step 1: Create a Dataproc cluster
+    create_cluster = DataprocCreateClusterOperator(
+        task_id="create_dataproc_cluster",  # Unique task ID for this step
+        project_id="spark-learning-43150",  #  Google Cloud project ID
+        region="us-central1",  # The region where the cluster will be created
+        cluster_name="dataproc-cluster",  # Name of the cluster
+        cluster_config={  # Configuration details for the cluster
+            "config_bucket": "earthquake-dp_temp_bk",  # GCS bucket for temporary storage
+            "gce_cluster_config": {  # Configure the virtual machines (VMs) for the cluster
+                "zone_uri": "us-central1-a",  # Zone for the cluster's VMs
+                "service_account_scopes": ["https://www.googleapis.com/auth/cloud-platform"],  # Cloud access permission
+                "tags": ["pyspark"]  # Tagging the cluster for easy identification
+            },
+            "master_config": {  # Configuration for the master node
+                "num_instances": 1,  # Number of master instances (1)
+                "machine_type_uri": "e2-standard-2",  # Type of machine to use
+                "disk_config": {"boot_disk_size_gb": 100}  # Disk size for master instance
+            },
+            "worker_config": {  # Configuration for worker nodes
+                "num_instances": 2,  # Number of worker instances
+                "machine_type_uri": "e2-standard-2",  # Machine type for worker nodes
+                "disk_config": {"boot_disk_size_gb": 100}  # Disk size for worker nodes
+            },
+            "software_config": {  # Software to be installed on the cluster
+                "image_version": "2.0-debian10",  # Version of Dataproc image
+                "optional_components": ["JUPYTER"]  # Install Jupyter for notebook support
+            },
+            "endpoint_config": {  # Enable HTTP access to the Dataproc cluster
+                "enable_http_port_access": True  # Allow access to the Dataproc UI via HTTP
+            }
+        },
+        use_if_exists=True,  # Use the cluster if it already exists
+        delete_on_error=True  # Delete the cluster if an error occurs
+    )
+###explaination
+create_cluster Task: Creates a Dataproc cluster in Google Cloud with specific configurations.
+task_id="create_dataproc_cluster": Sets a unique ID for this task in the DAG.
+project_id="spark-learning-43150": Specifies the Google Cloud project ID.
+region="us-central1": Sets the region where the cluster will be created.
+cluster_name="dataproc-cluster": Names the cluster.
+cluster_config: Configures the cluster with:
+"config_bucket" for temporary files,
+"gce_cluster_config" for the zone, service account scopes, and network tags,
+"master_config" and "worker_config" for master and worker machine types, instance counts, and storage,
+"software_config" for software versions and components like Jupyter,
+"endpoint_config" to enable HTTP access.
+use_if_exists=True: Reuses the cluster if it already exists.
+delete_on_error=True: Deletes the cluster if there is an error during creation.
+
+    # Step 2: Submit a PySpark job
+    job_id = 'earthquake_pyspark_job_daily' + datetime.now().strftime('%Y%m%d_%H%M%S')  # Create a unique job ID based on the current date and time
+
+    submit_pyspark_job = DataprocSubmitJobOperator(
+        task_id="submit_pyspark_job",  # Unique task ID for this step
+        project_id="spark-learning-43150",  # Google Cloud project ID
+        region="us-central1",  # The region of the Dataproc cluster
+        job={  # Job details for PySpark
+            "reference": {"job_id": job_id},  # Reference to the unique job ID
+            "placement": {"cluster_name": "dataproc-cluster"},  # The cluster where the job will run
+            "pyspark_job": {  # PySpark job details
+                "main_python_file_uri": "gs://earthquake_analysis_buck/pysaprk/pyspark_code/earthquake_pipeline_code_pyspark_fn.py",  # Path to the main Python file
+                "args": [  # Arguments passed to the PySpark job
+                    "--api_url", "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson",  # URL to fetch earthquake data
+                    "--pipeline_nm", "daily"  # Name of the pipeline
+                ],
+                "python_file_uris": [  # Additional Python files needed for the job
+                    "gs://earthquake_analysis_buck/pysaprk/pyspark_code/utility.py",
+                    "gs://earthquake_analysis_buck/pysaprk/pyspark_code/config.py"
+                ],
+                "jar_file_uris": [  # BigQuery connector JAR for accessing BigQuery.
+                    "gs://spark-lib/bigquery/spark-bigquery-with-dependencies_2.12-0.21.0.jar"
+                ]
+            }
+        },
+        gcp_conn_id="gcp_connection",  # Google Cloud connection ID
+    )
+	###explaination
+submit_pyspark_job Task: Submits a PySpark job to the Dataproc cluster.
+task_id="submit_pyspark_job": Unique task ID.
+project_id and region: Define the Google Cloud project and region.
+job: Specifies job details:
+"reference": {"job_id": job_id}: Uses the generated job ID.
+"placement": {"cluster_name": "dataproc-cluster"}: Specifies the cluster for the job.
+"pyspark_job": Configures the main PySpark file and its arguments, along with dependencies:
+main_python_file_uri: The main PySpark script in a GCS bucket.
+args: Passes arguments for the API URL and pipeline name.
+python_file_uris: Additional Python files for helper functions.
+jar_file_uris: BigQuery connector JAR for accessing BigQuery.
+gcp_conn_id="gcp_connection": Uses the Airflow Google Cloud connection
+
+    # Step 3: Delete the Dataproc cluster after the job is completed
+    delete_cluster = DataprocDeleteClusterOperator(
+        task_id='delete_dataproc_cluster',  # Unique task ID for deleting the cluster
+        project_id="spark-learning-43150",  # Google Cloud project ID
+        cluster_name='dataproc-cluster',  # Cluster to delete
+        region='us-central1',  # Region of the cluster
+        trigger_rule='all_done',  # Run this task after all previous tasks are done, regardless of success/failure
+        gcp_conn_id='gcp_connection',  # Google Cloud connection ID
+    )
+##explaination
+delete_cluster Task: Deletes the Dataproc cluster to save resources after job completion.
+task_id='delete_dataproc_cluster': Unique ID for this cleanup task.
+project_id, cluster_name, and region: Specify the cluster details.
+trigger_rule='all_done': Ensures the cluster is deleted after all upstream tasks, even if they fail.
+gcp_conn_id="gcp_connection": Specifies the Google Cloud connection in Airflow.
+
+    # Define the order in which the tasks should run
+    create_cluster >> submit_pyspark_job >> delete_cluster  # First create the cluster, then submit the job, and finally delete the cluster
+
+ 
+ 
+ Simple Explanation:
+Create Cluster: This step creates a Dataproc cluster (a Google Cloud service for running big data workloads) with specific configurations like the number of nodes, machine types, and software to be installed.
+Submit PySpark Job: After the cluster is created, we run a PySpark job (a Python-based job for big data processing) to fetch earthquake data and process it.
+Delete Cluster: After the job finishes, the cluster is deleted to save on costs
+
+
+
+####(Indian Standard Time (IST) is 5 hours and 30 minutes ahead of Coordinated Universal Time (UTC). 10:00 AM IST - 5 hours 30 minutes = 4:30 AM UTC
+)
